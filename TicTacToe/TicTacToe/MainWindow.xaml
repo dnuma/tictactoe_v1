@@ -1,0 +1,128 @@
+﻿<!--Author: David Numa -->
+    
+    <Window x:Class="TicTacToe.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TicTacToe"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Title="Tic Tac Toe" Height="600" Width="800" Background="WhiteSmoke" Icon="icon.png">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Game board, a 3x3 tic tac toe-->
+        <GroupBox Grid.Column="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <!--Buttons-->
+                <Button Name="button00" Grid.Column="0" Grid.Row="0" Margin="3" 
+                        Visibility="{Binding BtnPos00, Converter={StaticResource BooleanToVisibilityConverter}}" Click="Button_Click" Cursor="Hand"/>
+                <Button Name="button01" Grid.Column="1" Grid.Row="0" Margin="3" 
+                        Visibility="{Binding BtnPos01, Converter={StaticResource BooleanToVisibilityConverter}}" Click="Button_Click" Cursor="Hand"/>
+                <Button Name="button02" Grid.Column="2" Grid.Row="0" Margin="3" 
+                        Visibility="{Binding BtnPos02, Converter={StaticResource BooleanToVisibilityConverter}}" Click="Button_Click" Cursor="Hand"/>
+                <Button Name="button10" Grid.Column="0" Grid.Row="1" Margin="3" 
+                        Visibility="{Binding BtnPos10, Converter={StaticResource BooleanToVisibilityConverter}}" Click="Button_Click" Cursor="Hand"/>
+                <Button Name="button11" Grid.Column="1" Grid.Row="1" Margin="3" 
+                        Visibility="{Binding BtnPos11, Converter={StaticResource BooleanToVisibilityConverter}}" Click="Button_Click" Cursor="Hand"/>
+                <Button Name="button12" Grid.Column="2" Grid.Row="1" Margin="3" 
+                        Visibility="{Binding BtnPos12, Converter={StaticResource BooleanToVisibilityConverter}}" Click="Button_Click" Cursor="Hand"/>
+                <Button Name="button20" Grid.Column="0" Grid.Row="2" Margin="3" 
+                        Visibility="{Binding BtnPos20, Converter={StaticResource BooleanToVisibilityConverter}}" Click="Button_Click" Cursor="Hand"/>
+                <Button Name="button21" Grid.Column="1" Grid.Row="2" Margin="3" 
+                        Visibility="{Binding BtnPos21, Converter={StaticResource BooleanToVisibilityConverter}}" Click="Button_Click" Cursor="Hand"/>
+                <Button Name="button22" Grid.Column="2" Grid.Row="2" Margin="3" 
+                        Visibility="{Binding BtnPos22, Converter={StaticResource BooleanToVisibilityConverter}}" Click="Button_Click" Cursor="Hand"/>
+
+                <!--Images-->
+                <Image Name="pos00" Grid.Column="0" Grid.Row="0" Margin="3" 
+                       Visibility="{Binding ImgPos00, Converter={StaticResource BooleanToVisibilityConverter}}" Source="{Binding XorO00}" />
+                <Image Name="pos01" Grid.Column="1" Grid.Row="0" Margin="3" 
+                       Visibility="{Binding ImgPos01, Converter={StaticResource BooleanToVisibilityConverter}}" Source="{Binding XorO01}" />
+                <Image Name="pos02" Grid.Column="2" Grid.Row="0" Margin="3" 
+                       Visibility="{Binding ImgPos02, Converter={StaticResource BooleanToVisibilityConverter}}" Source="{Binding XorO02}" />
+                <Image Name="pos10" Grid.Column="0" Grid.Row="1" Margin="3" 
+                       Visibility="{Binding ImgPos10, Converter={StaticResource BooleanToVisibilityConverter}}" Source="{Binding XorO10}" />
+                <Image Name="pos11" Grid.Column="1" Grid.Row="1" Margin="3" 
+                       Visibility="{Binding ImgPos11, Converter={StaticResource BooleanToVisibilityConverter}}" Source="{Binding XorO11}" />
+                <Image Name="pos12" Grid.Column="2" Grid.Row="1" Margin="3" 
+                       Visibility="{Binding ImgPos12, Converter={StaticResource BooleanToVisibilityConverter}}" Source="{Binding XorO12}" />
+                <Image Name="pos20" Grid.Column="0" Grid.Row="2" Margin="3" 
+                       Visibility="{Binding ImgPos20, Converter={StaticResource BooleanToVisibilityConverter}}" Source="{Binding XorO20}" />
+                <Image Name="pos21" Grid.Column="1" Grid.Row="2" Margin="3" 
+                       Visibility="{Binding ImgPos21, Converter={StaticResource BooleanToVisibilityConverter}}" Source="{Binding XorO21}" />
+                <Image Name="pos22" Grid.Column="2" Grid.Row="2" Margin="3" 
+                       Visibility="{Binding ImgPos22, Converter={StaticResource BooleanToVisibilityConverter}}" Source="{Binding XorO22}" />
+            </Grid>
+        </GroupBox>
+
+        <!-- Game info: message, scoreboard -->
+        <GroupBox Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Texts-->
+                <Label Grid.Row="0" FontSize="30" Grid.ColumnSpan="2"
+                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       BorderBrush="#FFB6B6B6" BorderThickness="1" 
+                       Content="{Binding Message}" Width="175" Height="80"/>
+                <Label Grid.Row="1" FontSize="30" Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                       Content="Scoreboard"/>
+                <Label Grid.Row="2" Grid.Column="0" FontSize="30"
+                       HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Content="Wins:"/>
+                <Label Grid.Row="2" Grid.Column="1" FontSize="30"
+                       HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Content="{Binding Win}"/>
+                <Label Grid.Row="3" Grid.Column="0" FontSize="30"
+                       HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Content="Loses:"/>
+                <Label Grid.Row="3" Grid.Column="1" FontSize="30"
+                       HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Content="{Binding Lose}"/>
+                <Label Grid.Row="4" Grid.Column="0" FontSize="30"
+                       HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Content="Ties:"/>
+                <Label Grid.Row="4" Grid.Column="1" FontSize="30"
+                       HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Content="{Binding Tie}"/>
+
+                <!--New Game Button-->
+                <Button Grid.Row="5" Grid.ColumnSpan="2" Margin="20" Height="35" 
+                        Content="New Game" FontSize="15" Cursor="Hand" Click="NewGame_Click"/>
+
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
